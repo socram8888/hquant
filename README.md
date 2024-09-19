@@ -14,7 +14,40 @@ Pillow into thinking it's an RGB image so quantization works.
 The following samples dither the original image to the classic 16 colors supported in all terminals,
 using RGB (as Pillow quantize method would normally use), CIELAB and YCbCr.
 
-| Original                                    | RGB                                         | CIELAB                                         | YCbCr                                           |
-| ------------------------------------------- | ------------------------------------------- | ---------------------------------------------- | ----------------------------------------------- |
-| ![Original Lena](samples/lena_orig.png)     | ![Lena using RGB](samples/lena_rgb.png)     | ![Lena using CIELAB](samples/lena_lab.png)     | ![Lena using YCbCr](samples/lena_ycbcr.png)     |
-| ![Original Kobold](samples/kobold_orig.png) | ![Kobold using RGB](samples/kobold_rgb.png) | ![Kobold using CIELAB](samples/kobold_lab.png) | ![Kobold using YCbCr](samples/kobold_ycbcr.png) |
+| Original                                                                                              | RGB                                                                                                   | CIELAB                                                                                                   | YCbCr                                                                                                     |
+| ----------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------- |
+| ![Original Lena](https://github.com/socram8888/hquant/blob/master/samples/lena_orig.png?raw=true)     | ![Lena using RGB](https://github.com/socram8888/hquant/blob/master/samples/lena_rgb.png?raw=true)     | ![Lena using CIELAB](https://github.com/socram8888/hquant/blob/master/samples/lena_lab.png?raw=true)     | ![Lena using YCbCr](https://github.com/socram8888/hquant/blob/master/samples/lena_ycbcr.png?raw=true)     |
+| ![Original Kobold](https://github.com/socram8888/hquant/blob/master/samples/kobold_orig.png?raw=true) | ![Kobold using RGB](https://github.com/socram8888/hquant/blob/master/samples/kobold_rgb.png?raw=true) | ![Kobold using CIELAB](https://github.com/socram8888/hquant/blob/master/samples/kobold_lab.png?raw=true) | ![Kobold using YCbCr](https://github.com/socram8888/hquant/blob/master/samples/kobold_ycbcr.png?raw=true) |
+
+## Usage example
+
+```python
+from PIL import Image
+import hquant
+
+terminal_palette = bytes([
+	# Primary 3-bit (8 colors). Unique representation!
+	0x00, 0x00, 0x00,
+	0x80, 0x00, 0x00,
+	0x00, 0x80, 0x00,
+	0x80, 0x80, 0x00,
+	0x00, 0x00, 0x80,
+	0x80, 0x00, 0x80,
+	0x00, 0x80, 0x80,
+	0xc0, 0xc0, 0xc0,
+
+	# Equivalent "bright" versions of original 8 colors.
+	0x80, 0x80, 0x80,
+	0xff, 0x00, 0x00,
+	0x00, 0xff, 0x00,
+	0xff, 0xff, 0x00,
+	0x00, 0x00, 0xff,
+	0xff, 0x00, 0xff,
+	0x00, 0xff, 0xff,
+	0xff, 0xff, 0xff,
+])
+
+original = Image.open('lena.png')
+dithered = hquant.quantize(original, terminal_palette)
+dithered.save('dithered.png')
+```

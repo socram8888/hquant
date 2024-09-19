@@ -3,10 +3,10 @@
 High quality quantization for [Pillow](https://python-pillow.org/) images.
 
 Pillow uses Euclidean distance for color matching during quantization, which yields poor results
-when using RGB due to the nonlinearity of color perception. CIELAB is a better fit for Euclidean
+when using RGB due to the nonlinearity of color perception. YCbCr is a better fit for Euclidean
 distance, but Pillow does not natively support quantization of such images.
 
-This module improves the quantization by converting the images to CIELAB, and then tricking
+This module improves the quantization by converting the images to YCbCr, and then tricking
 Pillow into thinking it's an RGB image so quantization works.
 
 ## Samples

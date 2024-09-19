@@ -9,7 +9,7 @@ This module improves the quantization by converting the images to YCbCr, and the
 Pillow into thinking it's an RGB image so quantization works.
 """
 
-__version__ = '0.0.1'
+__version__ = '0.1.0'
 
 from PIL import Image
 from typing import List, Tuple, Union

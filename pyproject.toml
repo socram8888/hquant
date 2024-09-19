@@ -12,9 +12,18 @@ authors = [
 ]
 keywords = ["image", "dither", "dithering", "quantization", "palette"]
 classifiers = [
-	"Programming Language :: Python :: 3",
-	"License :: OSI Approved :: MIT License",
+	"License :: Freely Distributable",
 	"Operating System :: OS Independent",
+	"Programming Language :: Python :: 3",
+	"Programming Language :: Python :: 3.8",
+	"Programming Language :: Python :: 3.9",
+	"Programming Language :: Python :: 3.10",
+	"Programming Language :: Python :: 3.11",
+	"Programming Language :: Python :: 3.12",
+	"Topic :: Multimedia",
+	"Topic :: Multimedia :: Graphics",
+	"Topic :: Multimedia :: Graphics :: Graphics Conversion",
+	"Typing :: Typed",
 ]
 dependencies = [
     "Pillow >=9.0.0",
